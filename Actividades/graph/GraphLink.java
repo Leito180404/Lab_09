@@ -9,7 +9,10 @@ public class GraphLink<E> {
     }
 
     public void insertVertex(E data) {
-        // implementar este método
+        Vertex<E> v = new Vertex<E>(data);
+        if (listVertex.indexOf(v) < 0) {
+            listVertex.addLast(v);
+        }
     }
 
     public void insertEdge(E verOri, E verDes) {
