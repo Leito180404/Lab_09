@@ -78,6 +78,8 @@ public class GraphLink<E> {
         }
     }
 
+    
+
     public String toString() {
         return this.listVertex.toString();
     }
