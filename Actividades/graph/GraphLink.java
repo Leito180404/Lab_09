@@ -53,6 +53,18 @@ public class GraphLink<E> {
         return listVertex.contains(vertex);
     }
 
+public boolean searchEdge(E v, E z) {
+    Vertex<E> vertex = new Vertex<>(v);
+    int pos = listVertex.indexOf(vertex);
+    if (pos >= 0) {
+        Vertex<E> vert = listVertex.get(pos);
+        Edge<E> edge = new Edge<>(new Vertex<>(z));
+        return vert.listAdj.contains(edge);
+    }
+    return false;
+}
+
+
     public String toString() {
         return this.listVertex.toString();
     }
