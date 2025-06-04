@@ -47,6 +47,7 @@ public class GraphLink<E> {
             }
         }
     }
+    //Actividad 2.1.a
     public boolean searchVertex(E v) {
         Vertex<E> vertex = new Vertex<>(v);
         return listVertex.contains(vertex);
