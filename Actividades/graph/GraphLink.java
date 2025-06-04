@@ -78,6 +78,7 @@ public class GraphLink<E> {
         }
     }
 
+    //actividad 2.2.b
     public boolean removeEdge(E v, E z) {
         if (!searchVertex(v) || !searchVertex(z)) return false;
         Vertex<E> vertV = null;
