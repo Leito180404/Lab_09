@@ -98,6 +98,7 @@ public class GraphLink<E> {
         return removedFromV && removedFromZ;
     }
 
+    //actividad 2.2.c
 
     public String toString() {
         return this.listVertex.toString();
