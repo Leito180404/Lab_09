@@ -47,8 +47,10 @@ public class GraphLink<E> {
             }
         }
     }
-
-
+    public boolean searchVertex(E v) {
+        Vertex<E> vertex = new Vertex<>(v);
+        return listVertex.contains(vertex);
+    }
 
     public String toString() {
         return this.listVertex.toString();
