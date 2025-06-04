@@ -34,7 +34,18 @@ public class GraphLink<E> {
                 break;
             }
         }
-        
+
+        if (origen != null && destino != null) {
+            Edge<E> edge1 = new Edge<>(destino);
+            if (!origen.listAdj.contains(edge1)) {
+                origen.listAdj.addLast(edge1);
+            }
+
+            Edge<E> edge2 = new Edge<>(origen);
+            if (!destino.listAdj.contains(edge2)) {
+                destino.listAdj.addLast(edge2);
+            }
+        }
     }
     public String toString() {
         return this.listVertex.toString();
