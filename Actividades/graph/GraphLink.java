@@ -78,7 +78,25 @@ public class GraphLink<E> {
         }
     }
 
-    
+    public boolean removeEdge(E v, E z) {
+        if (!searchVertex(v) || !searchVertex(z)) return false;
+        Vertex<E> vertV = null;
+        Vertex<E> vertZ = null;
+
+        for (int i = 0; i < listVertex.size(); i++) {
+            Vertex<E> current = listVertex.get(i);
+            if (current.getData().equals(v)) vertV = current;
+            if (current.getData().equals(z)) vertZ = current;
+        }
+
+        if (vertV == null || vertZ == null) return false;
+
+        boolean removedFromV = vertV.listAdj.remove(new Edge<>(vertZ));
+        boolean removedFromZ = vertZ.listAdj.remove(new Edge<>(vertV));
+
+        return removedFromV && removedFromZ;
+    }
+
 
     public String toString() {
         return this.listVertex.toString();
