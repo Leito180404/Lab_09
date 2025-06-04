@@ -53,6 +53,7 @@ public class GraphLink<E> {
         return listVertex.contains(vertex);
     }
 
+    //Actividad 2.1.b
     public boolean searchEdge(E v, E z) {
         Vertex<E> vertex = new Vertex<>(v);
         int pos = listVertex.indexOf(vertex);
