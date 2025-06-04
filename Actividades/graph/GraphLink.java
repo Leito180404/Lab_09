@@ -66,7 +66,17 @@ public class GraphLink<E> {
     }
 
     //Actividad 2.2.a
-    
+    public void removeVertex(E v) {
+        Vertex<E> vertex = new Vertex<>(v);
+        int pos = listVertex.indexOf(vertex);
+        if (pos >= 0) {
+            for (int i = 0; i < listVertex.size(); i++) {
+                Vertex<E> currentVertex = listVertex.get(i);
+                currentVertex.listAdj.remove(new Edge<>(vertex));
+            }
+            listVertex.remove(vertex);
+        }
+    }
 
     public String toString() {
         return this.listVertex.toString();
