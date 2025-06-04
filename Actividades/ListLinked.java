@@ -88,5 +88,18 @@ public class ListLinked<E> {
         for (int i = 0; i < index; i++) current = current.next;
         return current.data;
     }
+
+    public int indexOf(E data) {
+        Node<E> current = head;
+        int index = 0;
+        while (current != null) {
+            if (current.data.equals(data)) {
+                return index;
+            }
+            current = current.next;
+            index++;
+        }
+        return -1;
+    }
 }
 
