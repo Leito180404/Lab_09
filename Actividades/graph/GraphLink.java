@@ -16,9 +16,10 @@ public class GraphLink<E> {
     }
 
     public void insertEdge(E verOri, E verDes) {
-        // implementar este método
+        Vertex<E> origen = null;
+        Vertex<E> destino = null;
+    
     }
-
     public String toString() {
         return this.listVertex.toString();
     }
