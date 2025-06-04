@@ -65,6 +65,8 @@ public class GraphLink<E> {
         return false;
     }
 
+    //Actividad 2.2.a
+    
 
     public String toString() {
         return this.listVertex.toString();
