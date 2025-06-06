@@ -14,6 +14,10 @@ public class Test {
 
         System.out.println("\ngrafo despues de insertar vertices:");
         System.out.println(graph);
+    
+        System.out.println("\nBuscando el vertice 2: " + graph.searchVertex(2));
+        System.out.println("Buscando el vertice 5: " + graph.searchVertex(5));
     }
+        
+        
 }
-
