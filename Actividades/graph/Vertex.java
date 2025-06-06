@@ -25,6 +25,13 @@ public class Vertex<E> {
     }
 
     public String toString() {
-        return this.data + " --> " + this.listAdj.toString() + "\n";
+        StringBuilder result = new StringBuilder();
+        result.append(this.data);
+        if (this.listAdj.size() > 0) {
+            result.append(" --> ");
+            result.append(this.listAdj.toString());
+        }
+        return result.toString();
     }
+
 }
