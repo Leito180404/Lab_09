@@ -101,5 +101,19 @@ public class ListLinked<E> {
         }
         return -1;
     }
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        Node<E> current = head;
+        while (current != null) {
+            result.append(current.data).append(" -> ");
+            current = current.next;
+        }
+        if (result.length() > 0) {
+            result.setLength(result.length() - 4);
+        }
+        return result.toString();
+    }
+
 }
 
