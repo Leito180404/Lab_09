@@ -5,10 +5,11 @@ import Actividades.ListLinked;
 public class Vertex<E> {
     private E data;
     protected ListLinked<Edge<E>> listAdj;
-
+    public boolean visited;
     public Vertex(E data) {
         this.data = data;
         listAdj = new ListLinked<Edge<E>>();
+        this.visited = false;
     }
 
     public E getData() {
