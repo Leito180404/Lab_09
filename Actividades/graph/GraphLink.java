@@ -100,6 +100,33 @@ public class GraphLink<E> {
 
     //actividad 2.2.c
 
+    public void dfs(E v) {
+        Vertex<E> vertex = new Vertex<>(v);
+        int pos = listVertex.indexOf(vertex);
+        if (pos < 0) {
+            System.out.println("Vertice no encontrado.");
+            return;
+        }
+
+        for (int i = 0; i < listVertex.size(); i++) {
+            listVertex.get(i).visited = false;
+        }
+        dfsRecursive(listVertex.get(pos));
+    }
+
+    private void dfsRecursive(Vertex<E> vertex) {
+        vertex.visited = true;
+        System.out.println("Visitando vertice: " + vertex.getData());
+
+        for (int i = 0; i < vertex.listAdj.size(); i++) {
+            Edge<E> edge = vertex.listAdj.get(i);
+            Vertex<E> adjVertex = edge.refDest;
+
+            if (!adjVertex.visited) {
+                dfsRecursive(adjVertex);
+            }
+        }}
+
     public String toString() {
         return this.listVertex.toString();
     }
