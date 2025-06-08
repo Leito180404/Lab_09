@@ -343,8 +343,22 @@ public class GraphLink1<E> {
     }
 
 
+    @Override
     public String toString() {
-        return this.listVertex.toString();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < listVertex.size(); i++) {
+            Vertex<E> vertex = listVertex.get(i);
+            sb.append(vertex.getData()).append(" --> ");
+            
+            for (int j = 0; j < vertex.listAdj.size(); j++) {
+                Edge<E> edge = vertex.listAdj.get(j);
+                sb.append(edge.refDest.getData()).append("[").append(edge.weight).append("], ");
+            }
+            
+            sb.append("\n");
+        }
+        return sb.toString();
     }
+
 }
 
