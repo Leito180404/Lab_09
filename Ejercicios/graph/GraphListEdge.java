@@ -10,6 +10,12 @@ public class GraphListEdge<V, E> {
         this.secVertex = new ArrayList<VertexObj<V, E>>();
         this.secEdge = new ArrayList<EdgeObj<V, E>>();
     }
-
-    // otros métodos
+    public void insertVertex(VertexObj<V, E> v) {
+        for (VertexObj<V, E> vertex : secVertex) {
+            if (vertex.info.equals(v.info)) {
+                return;
+            }
+        }
+        secVertex.add(v);
+    }
 }
