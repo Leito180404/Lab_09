@@ -76,4 +76,48 @@ public class GraphListEdge<V, E> {
         }
     }
 
+    //ejercicio 5.a
+    public int grado(VertexObj<V, E> v) {
+        return v.secEdge.size();
+    }
+    //ejercicio5.b
+    public boolean esCamino(VertexObj<V, E> inicio, VertexObj<V, E> fin) {
+        for (EdgeObj<V, E> edge : inicio.secEdge) {
+            if (edge.endVertex1.equals(fin) || edge.endVertex2.equals(fin)) {
+                return false; // Estan directamente conectados, no es un camino
+            }
+        }
+        return true;
+    }
+    //ejercicio 5.c
+    public boolean esCiclo(VertexObj<V, E> inicio, VertexObj<V, E> fin) {
+        for (EdgeObj<V, E> edge : inicio.secEdge) {
+            if (edge.endVertex1.equals(fin) || edge.endVertex2.equals(fin)) {
+                return true; // Existe una arista entre el inicio y el fin, es un ciclo
+            }
+        }
+        return false;
+    }
+
+    //ejercicio 5.d
+    public boolean esRueda() {
+        int nodoSueltoCount = 0;
+        for (VertexObj<V, E> vertex : secVertex) {
+            if (grado(vertex) == 1) {
+                nodoSueltoCount++;
+            }
+        }
+        return nodoSueltoCount == 1; // Solo un nodo debe estar desconectado
+    }
+    //ejercicio 5.e
+    public boolean esCompleto() {
+        for (VertexObj<V, E> v1 : secVertex) {
+            for (VertexObj<V, E> v2 : secVertex) {
+                if (!v1.equals(v2) && !searchEdge(v1, v2)) {
+                    return false; // Si algan par de vertices no esta conectado, no es completo
+                }
+            }
+        }
+        return true;
+    }
 }
