@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class GraphListEdge<V, E> {
     public ArrayList<VertexObj<V, E>> secVertex;
-    ArrayList<EdgeObj<V, E>> secEdge;
+    public ArrayList<EdgeObj<V, E>> secEdge;
     
     public GraphListEdge() {
         this.secVertex = new ArrayList<VertexObj<V, E>>();
