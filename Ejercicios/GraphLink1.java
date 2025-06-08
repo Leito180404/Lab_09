@@ -274,14 +274,15 @@ public class GraphLink1<E> {
     }
 
     // Ejercicio 2.c
+
     public boolean isConexo() {
-        for (Vertex<E> v : listVertex) {
-            for (Vertex<E> vertex : listVertex) {
-                vertex.visited = false;
+        for (int i = 0; i < listVertex.size(); i++) {
+            for (int j = 0; j < listVertex.size(); j++) {
+                listVertex.get(j).visited = false;
             }
-            dfs(v.getData());
-            for (Vertex<E> vertex : listVertex) {
-                if (!vertex.visited) {
+            dfs(listVertex.get(i).getData());
+            for (int k = 0; k < listVertex.size(); k++) {
+                if (!listVertex.get(k).visited) {
                     return false;
                 }
             }
