@@ -76,10 +76,10 @@ public class ListLinked1<E> implements Iterable<E> {
         return true;
     }
 
-    public boolean contains(E data) {
+    public boolean contains(Edge1<E> edge) {
         Node<E> current = head;
         while (current != null) {
-            if (current.data.equals(data))
+            if (current.data.equals(edge))
                 return true;
             current = current.next;
         }
