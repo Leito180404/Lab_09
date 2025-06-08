@@ -39,6 +39,6 @@ public class GraphListEdge<V, E> {
         }
     }
     return false;
-}
+    }
 
 }
