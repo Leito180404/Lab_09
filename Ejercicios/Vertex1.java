@@ -1,15 +1,13 @@
 package Ejercicios;
 
-import Actividades.graph.Edge;
-
 public class Vertex1<E> {
     private E data;
-    public ListLinked1<Edge<E>> listAdj;
+    public ListLinked1<Edge1<E>> listAdj;
     public boolean visited;
 
     public Vertex1(E data) {
         this.data = data;
-        this.listAdj = new ListLinked1<Edge<E>>();
+        this.listAdj = new ListLinked1<Edge1<E>>();
         this.visited = false;
     }
 
@@ -30,7 +28,7 @@ public class Vertex1<E> {
         result.append(this.data);
         if (this.listAdj.size() > 0) {
             result.append(" --> ");
-            for (Edge<E> edge : this.listAdj) {
+            for (Edge1<E> edge : this.listAdj) {
                 result.append(edge.refDest.getData())
                       .append("[").append(edge.weight).append("], ");
             }
