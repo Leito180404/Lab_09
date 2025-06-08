@@ -3,7 +3,7 @@ package Ejercicios.graph;
 import java.util.ArrayList;
 
 public class VertexObj<V, E> {
-    protected V info;
+    public V info;
     protected int position;
     public ArrayList<EdgeObj<V, E>> secEdge;
     public boolean visited;
