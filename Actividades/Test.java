@@ -55,8 +55,19 @@ public class Test {
 
         System.out.println("\nBuscando el vertice 2 despues de eliminarlo: " + graph.searchVertex(2));
     
+        GraphLink<Integer> graph1 = new GraphLink<>();
+
+        System.out.println("Insertando vertices...");
+        graph1.insertVertex(1);
+        graph1.insertVertex(2);
+        graph1.insertVertex(3);
+        graph1.insertVertex(4);
+
+        graph1.insertEdge(1, 2);
+        graph1.insertEdge(2, 3);
+        graph1.insertEdge(3, 4);
         System.out.println("\nRealizando DFS a partir del vertice 1...");
-        graph.dfs(1);
+        graph1.dfs(1);
     }
 }
 
