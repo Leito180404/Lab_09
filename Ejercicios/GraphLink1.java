@@ -1,9 +1,11 @@
 package Ejercicios;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 import Actividades.ListLinked;
@@ -259,53 +261,76 @@ public class GraphLink1<E> {
 
     // Ejercicio 2.b
     public List<E> shortPath(E v, E z) {
-        Vertex<E> startVertex = new Vertex<>(v);
-        Vertex<E> targetVertex = new Vertex<>(z);
-        
-        int startPos = listVertex.indexOf(startVertex);
-        int targetPos = listVertex.indexOf(targetVertex);
+        Vertex<E> start = new Vertex<>(v);
+        Vertex<E> end = new Vertex<>(z);
 
-        if (startPos < 0 || targetPos < 0) {
+        int startPos = listVertex.indexOf(start);
+        int endPos = listVertex.indexOf(end);
+
+        if (startPos < 0 || endPos < 0) {
             System.out.println("Vertice no encontrado.");
             return null;
         }
 
+        Map<Vertex<E>, Integer> distance = new HashMap<>();
+        Map<Vertex<E>, Vertex<E>> parent = new HashMap<>();
+
         for (int i = 0; i < listVertex.size(); i++) {
-            listVertex.get(i).visited = false;
+            Vertex<E> vertex = listVertex.get(i);
+            distance.put(vertex, Integer.MAX_VALUE);
+            parent.put(vertex, null);
+            vertex.visited = false;
         }
-        Queue<Vertex<E>> queue = new LinkedList<>();
-        Map<Vertex<E>, Vertex<E>> parentMap = new HashMap<>();
-        
-        Vertex<E> start = listVertex.get(startPos);
-        queue.add(start);
-        start.visited = true;
-        
-        while (!queue.isEmpty()) {
-            Vertex<E> vertex = queue.poll();
-            
-            if (vertex.equals(listVertex.get(targetPos))) {
-                List<E> path = new ArrayList<>();
-                Vertex<E> current = vertex;
-                while (current != null) {
-                    path.add(0, current.getData());
-                    current = parentMap.get(current);
-                }
-                return path;
-            }
-            for (int i = 0; i < vertex.listAdj.size(); i++) {
-                Edge<E> edge = vertex.listAdj.get(i);
-                Vertex<E> adjVertex = edge.refDest;
-                
-                if (!adjVertex.visited) {
-                    adjVertex.visited = true;
-                    queue.add(adjVertex);
-                    parentMap.put(adjVertex, vertex);
+
+        Vertex<E> source = listVertex.get(startPos);
+        distance.put(source, 0);
+
+        while (true) {
+            Vertex<E> current = null;
+            int minDist = Integer.MAX_VALUE;
+            for (int i = 0; i < listVertex.size(); i++) {
+                Vertex<E> vertex = listVertex.get(i);
+                if (!vertex.visited && distance.get(vertex) < minDist) {
+                    current = vertex;
+                    minDist = distance.get(vertex);
                 }
             }
+
+            if (current == null) break;
+
+            current.visited = true;
+
+            for (int i = 0; i < current.listAdj.size(); i++) {
+                Edge<E> edge = current.listAdj.get(i);
+                Vertex<E> adj = edge.refDest;
+
+                if (!adj.visited) {
+                    int newDist = distance.get(current) + edge.weight;
+                    if (newDist < distance.get(adj)) {
+                        distance.put(adj, newDist);
+                        parent.put(adj, current);
+                    }
+                }
+            }
         }
-        System.out.println("No hay camino entre los vertices.");
-        return null;
+
+        List<E> path = new LinkedList<>();
+        Vertex<E> target = listVertex.get(endPos);
+
+        if (distance.get(target) == Integer.MAX_VALUE) {
+            System.out.println("No hay camino entre los vertices.");
+            return null;
+        }
+
+        while (target != null) {
+            path.add(0, target.getData());
+            target = parent.get(target);
+        }
+
+        return path;
     }
+
+
 
     // Ejercicio 2.c
 
@@ -336,7 +361,45 @@ public class GraphLink1<E> {
             System.out.println("Vertice no encontrado.");
             return null;
         }
+
+        Map<Vertex<E>, Integer> dist = new HashMap<>();
+        Map<Vertex<E>, Vertex<E>> parentMap = new HashMap<>();
+        for (int i = 0; i < listVertex.size(); i++) {
+            dist.put(listVertex.get(i), Integer.MAX_VALUE);
+            parentMap.put(listVertex.get(i), null);
+        }
+        dist.put(listVertex.get(startPos), 0);
+
+        Queue<Vertex<E>> pq = new PriorityQueue<>(Comparator.comparingInt(dist::get));
+        pq.add(listVertex.get(startPos));
+
+        while (!pq.isEmpty()) {
+            Vertex<E> currentVertex = pq.poll();
+
+            for (int i = 0; i < currentVertex.listAdj.size(); i++) {
+                Edge<E> edge = currentVertex.listAdj.get(i);
+                Vertex<E> adjVertex = edge.refDest;
+                int newDist = dist.get(currentVertex) + edge.weight;
+
+                if (newDist < dist.get(adjVertex)) {
+                    dist.put(adjVertex, newDist);
+                    parentMap.put(adjVertex, currentVertex);
+                    pq.add(adjVertex);
+                }
+            }
+        }
+
         List<E> shortestPath = new ArrayList<>();
+        Vertex<E> current = listVertex.get(endPos);
+        while (current != null) {
+            shortestPath.add(0, current.getData());
+            current = parentMap.get(current);
+        }
+
+        if (shortestPath.isEmpty()) {
+            return null;
+        }
+
         return shortestPath;
     }
 
