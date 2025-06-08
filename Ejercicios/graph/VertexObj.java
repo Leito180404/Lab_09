@@ -6,6 +6,7 @@ public class VertexObj<V, E> {
     protected V info;
     protected int position;
     public ArrayList<EdgeObj<V, E>> secEdge;
+    public boolean visited;
 
     public VertexObj(V info, int position) {
         this.info = info;
