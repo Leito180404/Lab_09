@@ -68,6 +68,16 @@ public class Test {
         graph1.insertEdge(3, 4);
         System.out.println("\nRealizando DFS a partir del vertice 1...");
         graph1.dfs(1);
+
+        System.out.println("\nEliminando la arista entre 2 y 3...");
+        graph1.removeEdge(2, 3);
+        
+        // Mostrar el grafo despues de la eliminacin
+        System.out.println("grafo despues de eliminar la arista entre 2 y 3:");
+        System.out.println(graph1);
+
+        System.out.println("\nRealizando DFS a partir del vertice 1 depues de eliminar una arista");
+        graph1.dfs(1);
     }
 }
 
