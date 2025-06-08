@@ -2,7 +2,7 @@ package Actividades.graph;
 
 public class Edge<E> {
     public Vertex<E> refDest;
-    private int weight;
+    public int weight;
 
     public Edge(Vertex<E> refDest) {
         this(refDest, -1);
