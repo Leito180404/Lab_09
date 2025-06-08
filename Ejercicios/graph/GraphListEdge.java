@@ -41,4 +41,14 @@ public class GraphListEdge<V, E> {
     return false;
     }
 
+    public boolean searchEdge(VertexObj<V, E> v, VertexObj<V, E> z) {
+        for (EdgeObj<V, E> edge : v.secEdge) {
+            if (edge.endVertex1.equals(z) || edge.endVertex2.equals(z)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }
