@@ -273,6 +273,38 @@ public class GraphLink1<E> {
         return path;
     }
 
+    // Ejercicio 2.c
+    public boolean isConexo() {
+        for (Vertex<E> v : listVertex) {
+            for (Vertex<E> vertex : listVertex) {
+                vertex.visited = false;
+            }
+            dfs(v.getData());
+            for (Vertex<E> vertex : listVertex) {
+                if (!vertex.visited) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    // Ejercicio 2.d
+    public List<E> Dijkstra(E v, E w) {
+        Vertex<E> start = new Vertex<>(v);
+        Vertex<E> end = new Vertex<>(w);
+
+        int startPos = listVertex.indexOf(start);
+        int endPos = listVertex.indexOf(end);
+
+        if (startPos < 0 || endPos < 0) {
+            System.out.println("Vertice no encontrado.");
+            return null;
+        }
+        List<E> shortestPath = new ArrayList<>();
+        return shortestPath;
+    }
+
 
     public String toString() {
         return this.listVertex.toString();
