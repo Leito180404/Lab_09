@@ -120,4 +120,60 @@ public class GraphListEdge<V, E> {
         }
         return true;
     }
+
+    //ejercicio 6.a
+    public void printFormal() {
+        System.out.println("Representacion Formal:");
+        for (VertexObj<V, E> vertex : secVertex) {
+            System.out.print(vertex.info + ": ");
+            for (EdgeObj<V, E> edge : vertex.secEdge) {
+                if (edge.endVertex1.equals(vertex)) {
+                    System.out.print(edge.endVertex2.info + " ");
+                } else {
+                    System.out.print(edge.endVertex1.info + " ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    //ejercicio 6.b
+    public void printAdjacencyList() {
+        System.out.println("\nLista de Adyacencia:");
+        for (VertexObj<V, E> vertex : secVertex) {
+            System.out.print(vertex.info + " --> ");
+            for (EdgeObj<V, E> edge : vertex.secEdge) {
+                if (edge.endVertex1.equals(vertex)) {
+                    System.out.print(edge.endVertex2.info + " ");
+                } else {
+                    System.out.print(edge.endVertex1.info + " ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    //ejercicio 6.c
+    public void printAdjacencyMatrix() {
+        System.out.println("\nMatriz de Adyacencia:");
+        int size = secVertex.size();
+        int[][] matrix = new int[size][size];
+
+        for (int i = 0; i < size; i++) {
+            for (EdgeObj<V, E> edge : secVertex.get(i).secEdge) {
+                int startIdx = secVertex.indexOf(edge.endVertex1);
+                int endIdx = secVertex.indexOf(edge.endVertex2);
+                matrix[startIdx][endIdx] = 1;
+                matrix[endIdx][startIdx] = 1; // Para un grafo no dirigido
+            }
+        }
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
 }
