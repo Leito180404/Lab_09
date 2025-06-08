@@ -27,6 +27,13 @@ public class Test {
 
         System.out.println("\nBuscando arista entre 1 y 4:");
         System.out.println("Resultado: " + graph.searchEdge(1, 4)); 
+
+        System.out.println("\nEliminando el vertice 2...");
+        graph.removeVertex(2);
+        System.out.println("grafo despues de eliminar el vertice 2:");
+        System.out.println(graph);
+
+        System.out.println("\nBuscando el vertice 2 despues de eliminarlo: " + graph.searchVertex(2));
     }
 }
 
