@@ -31,4 +31,14 @@ public class GraphListEdge<V, E> {
         ((ArrayList<EdgeObj<V, E>>) v.secEdge).add(newEdge);
         ((ArrayList<EdgeObj<V, E>>) z.secEdge).add(newEdge);
     }
+
+    public boolean searchVertex(VertexObj<V, E> v) {
+    for (VertexObj<V, E> vertex : secVertex) {
+        if (vertex.equals(v)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 }
