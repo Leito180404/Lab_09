@@ -261,74 +261,13 @@ public class GraphLink1<E> {
 
     // Ejercicio 2.b
     public List<E> shortPath(E v, E z) {
-        Vertex<E> start = new Vertex<>(v);
-        Vertex<E> end = new Vertex<>(z);
-
-        int startPos = listVertex.indexOf(start);
-        int endPos = listVertex.indexOf(end);
-
-        if (startPos < 0 || endPos < 0) {
-            System.out.println("Vertice no encontrado.");
-            return null;
+        List<E> path = Dijkstra(v, z);
+        if (path == null || path.isEmpty()) {
+            System.out.println("No existe un camino entre los vertices.");
         }
-
-        Map<Vertex<E>, Integer> distance = new HashMap<>();
-        Map<Vertex<E>, Vertex<E>> parent = new HashMap<>();
-
-        for (int i = 0; i < listVertex.size(); i++) {
-            Vertex<E> vertex = listVertex.get(i);
-            distance.put(vertex, Integer.MAX_VALUE);
-            parent.put(vertex, null);
-            vertex.visited = false;
-        }
-
-        Vertex<E> source = listVertex.get(startPos);
-        distance.put(source, 0);
-
-        while (true) {
-            Vertex<E> current = null;
-            int minDist = Integer.MAX_VALUE;
-            for (int i = 0; i < listVertex.size(); i++) {
-                Vertex<E> vertex = listVertex.get(i);
-                if (!vertex.visited && distance.get(vertex) < minDist) {
-                    current = vertex;
-                    minDist = distance.get(vertex);
-                }
-            }
-
-            if (current == null) break;
-
-            current.visited = true;
-
-            for (int i = 0; i < current.listAdj.size(); i++) {
-                Edge<E> edge = current.listAdj.get(i);
-                Vertex<E> adj = edge.refDest;
-
-                if (!adj.visited) {
-                    int newDist = distance.get(current) + edge.weight;
-                    if (newDist < distance.get(adj)) {
-                        distance.put(adj, newDist);
-                        parent.put(adj, current);
-                    }
-                }
-            }
-        }
-
-        List<E> path = new LinkedList<>();
-        Vertex<E> target = listVertex.get(endPos);
-
-        if (distance.get(target) == Integer.MAX_VALUE) {
-            System.out.println("No hay camino entre los vertices.");
-            return null;
-        }
-
-        while (target != null) {
-            path.add(0, target.getData());
-            target = parent.get(target);
-        }
-
         return path;
     }
+
 
 
 
