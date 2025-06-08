@@ -16,12 +16,23 @@ public class Test3 {
         graph.insertVertex(vertex3);
         graph.insertVertex(vertex4);
 
-        graph.insertVertex(vertex1);  // Este deberia ignorarse
+        graph.insertVertex(vertex1);  // Este deberia ser ignorado
 
-        System.out.println("Vertices en el grafo:");
+        graph.insertEdge(vertex1, vertex2);
+        graph.insertEdge(vertex2, vertex3);
+        graph.insertEdge(vertex3, vertex4);
+        graph.insertEdge(vertex1, vertex4); // Insertando arista entre A y D (para probar que no se duplique)
+
+        System.out.println("Vértices en el grafo:");
         for (VertexObj<String, Integer> v : graph.secVertex) {
             System.out.println(v.info);
         }
+
+        System.out.println("\nAristas en el grafo:");
+        for (EdgeObj<String, Integer> edge : graph.secEdge) {
+            System.out.println(edge.endVertex1.info + " <-> " + edge.endVertex2.info);
+        }
     }
 }
+
 
