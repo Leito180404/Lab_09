@@ -1,4 +1,7 @@
 package Ejercicios;
+import java.util.LinkedList;
+import java.util.Queue;
+
 import Actividades.ListLinked;
 import Actividades.graph.Edge;
 import Actividades.graph.Vertex;
@@ -126,6 +129,41 @@ public class GraphLink1<E> {
             Vertex<E> adjVertex = edge.refDest;
             if (!adjVertex.visited) {
                 dfsRecursive(adjVertex);
+            }
+        }
+    }
+
+
+    //ejercicio 1
+    public void bfs(E v) {
+        Vertex<E> startVertex = new Vertex<>(v);
+        int pos = listVertex.indexOf(startVertex);
+        if (pos < 0) {
+            System.out.println("Vertice no encontrado.");
+            return;
+        }
+
+        for (int i = 0; i < listVertex.size(); i++) {
+            listVertex.get(i).visited = false;
+        }
+
+        Queue<Vertex<E>> queue = new LinkedList<>();
+        Vertex<E> currentVertex = listVertex.get(pos);
+        queue.add(currentVertex);
+        currentVertex.visited = true;
+
+        System.out.println("Realizando BFS a partir del vertice " + v + "...");
+        while (!queue.isEmpty()) {
+            Vertex<E> vertex = queue.poll();
+            System.out.println("Visitando vertice: " + vertex.getData());
+
+            for (int i = 0; i < vertex.listAdj.size(); i++) {
+                Edge<E> edge = vertex.listAdj.get(i);
+                Vertex<E> adjVertex = edge.refDest;
+                if (!adjVertex.visited) {
+                    adjVertex.visited = true;
+                    queue.add(adjVertex);
+                }
             }
         }
     }
