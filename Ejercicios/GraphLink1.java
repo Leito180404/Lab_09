@@ -1,5 +1,8 @@
 package Ejercicios;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 
 import Actividades.ListLinked;
@@ -134,7 +137,7 @@ public class GraphLink1<E> {
     }
 
 
-    //ejercicio 1
+    //ejercicio 1.a
     public void bfs(E v) {
         Vertex<E> startVertex = new Vertex<>(v);
         int pos = listVertex.indexOf(startVertex);
@@ -168,6 +171,55 @@ public class GraphLink1<E> {
         }
     }
 
+    //ejercicio 1.b
+    public List<E> bfsPath(E v, E z) {
+        Vertex<E> startVertex = new Vertex<>(v);
+        Vertex<E> targetVertex = new Vertex<>(z);
+        int startPos = listVertex.indexOf(startVertex);
+        int targetPos = listVertex.indexOf(targetVertex);
+
+        if (startPos < 0 || targetPos < 0) {
+            System.out.println("Vertice no encontrado.");
+            return null;
+        }
+
+        for (int i = 0; i < listVertex.size(); i++) {
+            listVertex.get(i).visited = false;
+        }
+
+        Queue<Vertex<E>> queue = new LinkedList<>();
+        Map<Vertex<E>, Vertex<E>> parentMap = new HashMap<>();
+        Vertex<E> currentVertex = listVertex.get(startPos);
+        queue.add(currentVertex);
+        currentVertex.visited = true;
+
+        while (!queue.isEmpty()) {
+            Vertex<E> vertex = queue.poll();
+
+            if (vertex.equals(listVertex.get(targetPos))) {
+                List<E> path = new LinkedList<>();
+                Vertex<E> current = vertex;
+                while (current != null) {
+                    path.add(0, current.getData());
+                    current = parentMap.get(current);
+                }
+                return path;
+            }
+
+            for (int i = 0; i < vertex.listAdj.size(); i++) {
+                Edge<E> edge = vertex.listAdj.get(i);
+                Vertex<E> adjVertex = edge.refDest;
+                if (!adjVertex.visited) {
+                    adjVertex.visited = true;
+                    queue.add(adjVertex);
+                    parentMap.put(adjVertex, vertex);
+                }
+            }
+        }
+
+        System.out.println("No hay camino entre los vertices.");
+        return null;
+    }
 
     public String toString() {
         return this.listVertex.toString();
