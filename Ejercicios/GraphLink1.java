@@ -1,4 +1,5 @@
 package Ejercicios;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -255,6 +256,23 @@ public class GraphLink1<E> {
             }
         }
     }
+
+    // Ejercicio 2.b
+    public List<E> shortPath(E v, E z) {
+        Vertex<E> start = new Vertex<>(v);
+        Vertex<E> end = new Vertex<>(z);
+
+        int startPos = listVertex.indexOf(start);
+        int endPos = listVertex.indexOf(end);
+
+        if (startPos < 0 || endPos < 0) {
+            System.out.println("Vertice no encontrado.");
+            return null;
+        }
+        List<E> path = new ArrayList<>();
+        return path;
+    }
+
 
     public String toString() {
         return this.listVertex.toString();
