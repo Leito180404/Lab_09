@@ -54,6 +54,9 @@ public class Test {
         System.out.println(graph);
 
         System.out.println("\nBuscando el vertice 2 despues de eliminarlo: " + graph.searchVertex(2));
+    
+        System.out.println("\nRealizando DFS a partir del vertice 1...");
+        graph.dfs(1); // Realiza el DFS desde el vértice 1
     }
 }
 
