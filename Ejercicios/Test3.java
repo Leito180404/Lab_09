@@ -18,7 +18,7 @@ public class Test3 {
 
         graph.insertVertex(vertex1);  // Este deberia ignorarse
 
-        System.out.println("Vértices en el grafo:");
+        System.out.println("Vertices en el grafo:");
         for (VertexObj<String, Integer> v : graph.secVertex) {
             System.out.println(v.info);
         }
