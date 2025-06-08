@@ -176,4 +176,103 @@ public class GraphListEdge<V, E> {
         }
     }
 
+    //ejercicio 9.a
+    public boolean isIsomorphic(GraphListEdge<V, E> otherGraph) {
+        if (this.secVertex.size() != otherGraph.secVertex.size()) {
+            return false;
+        }
+
+        for (VertexObj<V, E> vertex : this.secVertex) {
+            boolean matchFound = false;
+            for (VertexObj<V, E> otherVertex : otherGraph.secVertex) {
+                if (compareEdges(vertex, otherVertex)) {
+                    matchFound = true;
+                    break;
+                }
+            }
+            if (!matchFound) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean compareEdges(VertexObj<V, E> vertex1, VertexObj<V, E> vertex2) {
+        if (vertex1.secEdge.size() != vertex2.secEdge.size()) {
+            return false;
+        }
+        for (EdgeObj<V, E> edge1 : vertex1.secEdge) {
+            boolean edgeMatch = false;
+            for (EdgeObj<V, E> edge2 : vertex2.secEdge) {
+                if (edge1.equals(edge2)) {
+                    edgeMatch = true;
+                    break;
+                }
+            }
+            if (!edgeMatch) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //ejercicio 9.b
+    public boolean isPlanar() {
+        for (EdgeObj<V, E> edge : secEdge) {
+            if (hasCrossingEdge(edge)) {
+                return false;
+            }
+        }
+        return true;
+    }
+        private boolean hasCrossingEdge(EdgeObj<V, E> edge) {
+            return false;
+    }
+
+    //ejercicio 9.c
+    public boolean isConnected() {
+        VertexObj<V, E> startVertex = secVertex.get(0);
+        dfs(startVertex);
+
+        for (VertexObj<V, E> vertex : secVertex) {
+            if (!vertex.visited) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void dfs(VertexObj<V, E> vertex) {
+        vertex.visited = true;
+        for (EdgeObj<V, E> edge : vertex.secEdge) {
+            VertexObj<V, E> adjacent = (edge.endVertex1.equals(vertex)) ? edge.endVertex2 : edge.endVertex1;
+            if (!adjacent.visited) {
+                dfs(adjacent);
+            }
+        }
+    }
+
+    //ejercicio 9.d
+    public boolean isAutocomplementary() {
+        GraphListEdge<V, E> complementGraph = generateComplementGraph();
+
+        return this.isIsomorphic(complementGraph);
+    }
+
+    private GraphListEdge<V, E> generateComplementGraph() {
+        GraphListEdge<V, E> complementGraph = new GraphListEdge<>();
+
+        for (VertexObj<V, E> vertex : secVertex) {
+            complementGraph.insertVertex(new VertexObj<>(vertex.info, vertex.position));
+        }
+
+        for (VertexObj<V, E> vertex : secVertex) {
+            for (VertexObj<V, E> adj : secVertex) {
+                if (!vertex.equals(adj) && !searchEdge(vertex, adj)) {
+                    complementGraph.insertEdge(vertex, adj);
+                }
+            }
+        }
+        return complementGraph;
+    }
 }
