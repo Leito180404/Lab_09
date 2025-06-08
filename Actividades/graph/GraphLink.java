@@ -121,11 +121,12 @@ public class GraphLink<E> {
         for (int i = 0; i < vertex.listAdj.size(); i++) {
             Edge<E> edge = vertex.listAdj.get(i);
             Vertex<E> adjVertex = edge.refDest;
-
             if (!adjVertex.visited) {
                 dfsRecursive(adjVertex);
             }
-        }}
+        }
+    }
+
 
     public String toString() {
         return this.listVertex.toString();
