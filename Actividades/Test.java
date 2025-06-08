@@ -36,6 +36,7 @@ public class Test {
         System.out.println("\nBuscando arista entre 1 y 4:");
         System.out.println("Resultado: " + graph.searchEdge(1, 4)); 
 
+        //porbando remove edge
         System.out.println("\nEliminando la arista entre 2 y 3...");
         boolean edgeRemoved = graph.removeEdge(2, 3);
         System.out.println("Resultado de eliminar arista entre 2 y 3: " + edgeRemoved);
@@ -45,6 +46,8 @@ public class Test {
         System.out.println("\nBuscando la arista entre 2 y 3 despues de eliminarla:");
         System.out.println("Resultado: " + graph.searchEdge(2, 3));
 
+
+        //probando remove vertex
         System.out.println("\nEliminando el vertice 2...");
         graph.removeVertex(2);
         System.out.println("grafo despues de eliminar el vertice 2:");
