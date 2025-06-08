@@ -1,5 +1,13 @@
 package Ejercicios.graph;
 
-public class VertexObj {
-    
+public class VertexObj<V, E> {
+    protected V info;
+    protected int position;
+
+    public VertexObj(V info, int position) {
+        this.info = info;
+        this.position = position;
+    }
+
+    // otros métodos
 }
