@@ -37,6 +37,14 @@ public class Test3 {
         System.out.println("\nBuscando vertices:");
         System.out.println("¿El vertice A existe? " + graph.searchVertex(vertex1)); // Deberia retornar true
         System.out.println("¿El vertice Z existe? " + graph.searchVertex(new VertexObj<>("Z", 5))); // Deberia retornar false
+        // Prueba del metodo searchEdge
+        System.out.println("\nBuscando aristas entre vertices:");
+        System.out.println("¿Existe una arista entre A y B? " + graph.searchEdge(vertex1, vertex2)); // Deberia retornar true
+        System.out.println("¿Existe una arista entre A y C? " + graph.searchEdge(vertex1, vertex3)); // Deberia retornar false
+    
+        // Probar BFS
+        System.out.println("\nRealizando recorrido BFS a partir del vértice A:");
+        graph.bfs(vertex1);  // Esto imprimira los vertices visitados comenzando desde "A"
     }
 }
 
