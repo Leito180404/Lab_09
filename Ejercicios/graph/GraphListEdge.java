@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.ArrayList;
 
 public class GraphListEdge<V, E> {
-    ArrayList<VertexObj<V, E>> secVertex;
+    public ArrayList<VertexObj<V, E>> secVertex;
     ArrayList<EdgeObj<V, E>> secEdge;
     
     public GraphListEdge() {
