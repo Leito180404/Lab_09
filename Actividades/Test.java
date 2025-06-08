@@ -18,15 +18,32 @@ public class Test {
 
         System.out.println("\ngrafo despues de insertar vertices y aristas:");
         System.out.println(graph);
-
+        
+        //probando searchvertex
         System.out.println("\nBuscando el vertice 2: " + graph.searchVertex(2));
         System.out.println("Buscando el vertice 5: " + graph.searchVertex(5));
+
+        //probando search edge
+        System.out.println("\nBuscando arista entre 2 y 3:");
+        System.out.println("Resultado: " + graph.searchEdge(2, 3));
+
+        System.out.println("\nBuscando arista entre 1 y 4:");
+        System.out.println("Resultado: " + graph.searchEdge(1, 4)); 
 
         System.out.println("\nBuscando arista entre 2 y 3:");
         System.out.println("Resultado: " + graph.searchEdge(2, 3));
 
         System.out.println("\nBuscando arista entre 1 y 4:");
         System.out.println("Resultado: " + graph.searchEdge(1, 4)); 
+
+        System.out.println("\nEliminando la arista entre 2 y 3...");
+        boolean edgeRemoved = graph.removeEdge(2, 3);
+        System.out.println("Resultado de eliminar arista entre 2 y 3: " + edgeRemoved);
+        System.out.println("grafo despues de eliminar la arista entre 2 y 3:");
+        System.out.println(graph);
+
+        System.out.println("\nBuscando la arista entre 2 y 3 despues de eliminarla:");
+        System.out.println("Resultado: " + graph.searchEdge(2, 3));
 
         System.out.println("\nEliminando el vertice 2...");
         graph.removeVertex(2);
