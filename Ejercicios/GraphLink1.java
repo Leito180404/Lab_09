@@ -259,18 +259,52 @@ public class GraphLink1<E> {
 
     // Ejercicio 2.b
     public List<E> shortPath(E v, E z) {
-        Vertex<E> start = new Vertex<>(v);
-        Vertex<E> end = new Vertex<>(z);
+        Vertex<E> startVertex = new Vertex<>(v);
+        Vertex<E> targetVertex = new Vertex<>(z);
+        
+        int startPos = listVertex.indexOf(startVertex);
+        int targetPos = listVertex.indexOf(targetVertex);
 
-        int startPos = listVertex.indexOf(start);
-        int endPos = listVertex.indexOf(end);
-
-        if (startPos < 0 || endPos < 0) {
+        if (startPos < 0 || targetPos < 0) {
             System.out.println("Vertice no encontrado.");
             return null;
         }
-        List<E> path = new ArrayList<>();
-        return path;
+
+        for (int i = 0; i < listVertex.size(); i++) {
+            listVertex.get(i).visited = false;
+        }
+        Queue<Vertex<E>> queue = new LinkedList<>();
+        Map<Vertex<E>, Vertex<E>> parentMap = new HashMap<>();
+        
+        Vertex<E> start = listVertex.get(startPos);
+        queue.add(start);
+        start.visited = true;
+        
+        while (!queue.isEmpty()) {
+            Vertex<E> vertex = queue.poll();
+            
+            if (vertex.equals(listVertex.get(targetPos))) {
+                List<E> path = new ArrayList<>();
+                Vertex<E> current = vertex;
+                while (current != null) {
+                    path.add(0, current.getData());
+                    current = parentMap.get(current);
+                }
+                return path;
+            }
+            for (int i = 0; i < vertex.listAdj.size(); i++) {
+                Edge<E> edge = vertex.listAdj.get(i);
+                Vertex<E> adjVertex = edge.refDest;
+                
+                if (!adjVertex.visited) {
+                    adjVertex.visited = true;
+                    queue.add(adjVertex);
+                    parentMap.put(adjVertex, vertex);
+                }
+            }
+        }
+        System.out.println("No hay camino entre los vertices.");
+        return null;
     }
 
     // Ejercicio 2.c
