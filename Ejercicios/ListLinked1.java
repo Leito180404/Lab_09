@@ -76,15 +76,17 @@ public class ListLinked1<E> implements Iterable<E> {
         return true;
     }
 
-    public boolean contains(Edge1<E> edge) {
+    public boolean contains(E data) {
         Node<E> current = head;
         while (current != null) {
-            if (current.data.equals(edge))
+            if (current.data.equals(data)) {
                 return true;
+            }
             current = current.next;
         }
         return false;
     }
+
 
     public E get(int index) {
         if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
