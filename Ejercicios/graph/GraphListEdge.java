@@ -1,5 +1,6 @@
 package Ejercicios.graph;
-
+import java.util.Queue;
+import java.util.LinkedList;
 import java.util.ArrayList;
 
 public class GraphListEdge<V, E> {
@@ -50,5 +51,29 @@ public class GraphListEdge<V, E> {
         return false;
     }
 
+    public void bfs(VertexObj<V, E> v) {
+        for (VertexObj<V, E> vertex : secVertex) {
+            vertex.visited = false;
+        }
+
+        Queue<VertexObj<V, E>> queue = new LinkedList<>();
+        queue.add(v);
+        v.visited = true;
+        
+        System.out.println("Recorrido BFS a partir del vértice: " + v.info);
+
+        while (!queue.isEmpty()) {
+            VertexObj<V, E> currentVertex = queue.poll();
+            System.out.println("Visitando vértice: " + currentVertex.info);
+
+            for (EdgeObj<V, E> edge : currentVertex.secEdge) {
+                VertexObj<V, E> adjacentVertex = (edge.endVertex1.equals(currentVertex)) ? edge.endVertex2 : edge.endVertex1;
+                if (!adjacentVertex.visited) {
+                    adjacentVertex.visited = true;
+                    queue.add(adjacentVertex);
+                }
+            }
+        }
+    }
 
 }
