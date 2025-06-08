@@ -23,7 +23,7 @@ public class Test3 {
         graph.insertEdge(vertex3, vertex4);
         graph.insertEdge(vertex1, vertex4); // Insertando arista entre A y D (para probar que no se duplique)
 
-        System.out.println("Vértices en el grafo:");
+        System.out.println("Vertices en el grafo:");
         for (VertexObj<String, Integer> v : graph.secVertex) {
             System.out.println(v.info);
         }
@@ -32,7 +32,13 @@ public class Test3 {
         for (EdgeObj<String, Integer> edge : graph.secEdge) {
             System.out.println(edge.endVertex1.info + " <-> " + edge.endVertex2.info);
         }
+
+        // Prueba del metodo searchVertex
+        System.out.println("\nBuscando vertices:");
+        System.out.println("¿El vertice A existe? " + graph.searchVertex(vertex1)); // Deberia retornar true
+        System.out.println("¿El vertice Z existe? " + graph.searchVertex(new VertexObj<>("Z", 5))); // Deberia retornar false
     }
 }
+
 
 
