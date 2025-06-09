@@ -11,7 +11,7 @@ public class GraphListEdge<V, E> {
         this.secVertex = new ArrayList<VertexObj<V, E>>();
         this.secEdge = new ArrayList<EdgeObj<V, E>>(); 
     }
-
+    //ejercicio 3.a
     public void insertVertex(VertexObj<V, E> v) {
         for (VertexObj<V, E> vertex : secVertex) {
             if (vertex.info.equals(v.info)) {
@@ -20,7 +20,7 @@ public class GraphListEdge<V, E> {
         }
         secVertex.add(v);
     }
-
+    //ejercicio 3.b
     public void insertEdge(VertexObj<V, E> v, VertexObj<V, E> z) {
         for (EdgeObj<V, E> edge : secEdge) {
             if (edge.endVertex1.equals(v) && edge.endVertex2.equals(z) || edge.endVertex1.equals(z) && edge.endVertex2.equals(v)) {
@@ -32,7 +32,7 @@ public class GraphListEdge<V, E> {
         ((ArrayList<EdgeObj<V, E>>) v.secEdge).add(newEdge);
         ((ArrayList<EdgeObj<V, E>>) z.secEdge).add(newEdge);
     }
-
+    //ejercicio 3.c
     public boolean searchVertex(VertexObj<V, E> v) {
     for (VertexObj<V, E> vertex : secVertex) {
         if (vertex.equals(v)) {
@@ -41,7 +41,7 @@ public class GraphListEdge<V, E> {
     }
     return false;
     }
-
+    //ejercicio 3.d
     public boolean searchEdge(VertexObj<V, E> v, VertexObj<V, E> z) {
         for (EdgeObj<V, E> edge : v.secEdge) {
             if (edge.endVertex1.equals(z) || edge.endVertex2.equals(z)) {
@@ -50,7 +50,7 @@ public class GraphListEdge<V, E> {
         }
         return false;
     }
-
+    //ejercicio 3.e
     public void bfs(VertexObj<V, E> v) {
         for (VertexObj<V, E> vertex : secVertex) {
             vertex.visited = false;
