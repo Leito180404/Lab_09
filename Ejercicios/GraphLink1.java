@@ -290,21 +290,24 @@ public class GraphLink1<E> {
             dist.put(listVertex.get(i), Integer.MAX_VALUE);  
             parentMap.put(listVertex.get(i), null);
         }
-        dist.put(listVertex.get(startPos), 0);  
+        dist.put(listVertex.get(startPos), 0); 
 
         PriorityQueue<Vertex1<E>> pq = new PriorityQueue<>(Comparator.comparingInt(dist::get));
-        pq.add(listVertex.get(startPos));  
+        pq.add(listVertex.get(startPos)); 
 
-        Set<Vertex1<E>> processed = new HashSet<>();  
+        Set<Vertex1<E>> processed = new HashSet<>(); 
 
         while (!pq.isEmpty()) {
             Vertex1<E> currentVertex = pq.poll();
 
             if (processed.contains(currentVertex)) {
-                continue;  
+                continue;
             }
 
             processed.add(currentVertex);
+
+            System.out.println("Procesando vértice: " + currentVertex.getData());
+            System.out.println("Distancias actuales: " + dist);
 
             for (Edge1<E> edge : currentVertex.listAdj) {
                 Vertex1<E> adjVertex = edge.refDest;
@@ -314,9 +317,8 @@ public class GraphLink1<E> {
                     dist.put(adjVertex, newDist);
                     parentMap.put(adjVertex, currentVertex);
 
-                    if (!processed.contains(adjVertex)) {
-                        pq.add(adjVertex);
-                    }
+                    System.out.println("Actualizando distancia para " + adjVertex.getData() + ": " + newDist);
+                    pq.add(adjVertex);
                 }
             }
         }
@@ -333,8 +335,10 @@ public class GraphLink1<E> {
             return null;
         }
 
+        System.out.println("Camino más corto encontrado: " + shortestPath);
         return shortestPath;
     }
+
 
     @Override
     public String toString() {
