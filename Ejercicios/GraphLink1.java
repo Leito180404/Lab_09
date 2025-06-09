@@ -131,7 +131,7 @@ public class GraphLink1<E> {
             }
         }
     }
-
+    //ejercicio 1.a
     public void bfs(E v) {
         Vertex1<E> startVertex = new Vertex1<>(v);
         int pos = listVertex.indexOf(startVertex);
@@ -164,7 +164,7 @@ public class GraphLink1<E> {
             }
         }
     }
-
+    //ejercicio 1.b
     public List<E> bfsPath(E v, E z) {
         Vertex1<E> startVertex = new Vertex1<>(v);
         Vertex1<E> targetVertex = new Vertex1<>(z);
