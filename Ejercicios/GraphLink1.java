@@ -213,7 +213,7 @@ public class GraphLink1<E> {
         System.out.println("No hay camino entre los vertices.");
         return null;
     }
-
+    //ejercicio 2.a
     public void insertEdgeWeight(E verOri, E verDes, int w) {
         Vertex1<E> origen = null;
         Vertex1<E> destino = null;
@@ -246,7 +246,7 @@ public class GraphLink1<E> {
             }
         }
     }
-
+    //ejercicio 2.b
     public List<E> shortPath(E v, E z) {
         List<E> path = Dijkstra(v, z);
         if (path == null || path.isEmpty()) {
@@ -256,7 +256,7 @@ public class GraphLink1<E> {
         }
         return path;
     }
-
+        //ejercicio 2.c
     public boolean isConexo() {
         for (int i = 0; i < listVertex.size(); i++) {
             for (int j = 0; j < listVertex.size(); j++) {
@@ -271,7 +271,7 @@ public class GraphLink1<E> {
         }
         return true;
     }
-
+    //ejercicio 2.d
     public List<E> Dijkstra(E v, E w) {
         Vertex1<E> start = new Vertex1<>(v);
         Vertex1<E> end = new Vertex1<>(w);
