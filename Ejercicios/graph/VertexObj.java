@@ -13,6 +13,5 @@ public class VertexObj<V, E> {
         this.position = position;
         this.secEdge = new ArrayList<EdgeObj<V, E>>();
     }
-    // otros métodos
 }
 
