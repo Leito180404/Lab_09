@@ -12,7 +12,5 @@ public class EdgeObj<V, E> {
         this.info = info;
         this.position = position;
     }
-
-    // otros métodos
 }
 
